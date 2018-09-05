@@ -36,9 +36,9 @@ defmodule Ex03 do
 
 
 
-     V  V  V  V  V  V  V  V  V  V  V  V  V  V  V  V  V
-> > > USE NO LIBRARY FUNCTIONS UNLESS EXPLICITLY NOTED. < < < <
-     ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^
+        V  V  V  V  V  V  V  V  V  V  V  V  V  V  V  V  V
+    > > > USE NO LIBRARY FUNCTIONS UNLESS EXPLICITLY NOTED. < < < <
+        ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^
   """
 
   ##############################################################################
@@ -59,7 +59,13 @@ defmodule Ex03 do
 
   """
 
-  def odd_even . . . "your code"
+  def odd_even([]), do: []
+  def odd_even([h | t]) do
+    cond do
+        Integer.is_even(h) -> [:even | odd_even(t)]
+        true -> [:odd | odd_even(t)]
+    end
+  end
 
 
   ##############################################################################
@@ -81,7 +87,13 @@ defmodule Ex03 do
 
   """
 
-  def list_contains . .. "your code"
+  def list_contains([], _n), do: false
+  def list_contains([h | t], n) do
+    cond do
+        h == n -> true
+        true -> list_contains(t, n)
+    end
+  end
 
   ##############################################################################
   # 3.3:  5 points #
@@ -105,7 +117,15 @@ defmodule Ex03 do
 
   """
 
-  def list_equal . . . "your code"
+  def list_equal([], []), do: true
+  def list_equal([], [_h | _t]), do: false
+  def list_equal([_h | _t], []), do: false
+  def list_equal([h1 | t1], [h2 | t2]) do
+    cond do
+        h1 != h2 -> false
+        true -> list_equal(t1, t2)
+    end
+  end
 
 
 
@@ -153,7 +173,20 @@ defmodule Ex03 do
   Think a little about a nice way to lay this code out.
   """
 
-  def won . . . "your code"
+  def won(tuple) do
+    case tuple do
+        {z, z, z, _, _, _, _, _, _} -> z
+        {_, _, _, z, z, z,  _, _, _} -> z
+        {_, _, _, _, _, _, z, z, z} -> z
+        {z, _, _, z, _, _, z, _, _} -> z
+        {_, z, _, _, z, _, _, z, _} -> z
+        {_, _, z, _, _, z, _, _, z} -> z
+        {z, _, _, _, z, _, _, _, z} -> z
+        {_, _, z, _, z, _, z, _, _} -> z
+        _ -> false
+    end
+  end
+  # 123 / 456 / 789 / 147 / 258 / 369 / 159 / 357
 
 
   ###########################
