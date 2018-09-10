@@ -38,6 +38,12 @@ defmodule Ex04 do
       iex> Ex04.reverse [ 5, 4, 3, 2, 1 ]
       [ 1, 2, 3, 4, 5 ]
 
+      iex> Ex04.reverse [ ]
+      [ ]
+
+      iex> Ex04.reverse [ 1, 145 ]
+      [ 145, 1 ]
+
   """
   def reverse(list), do: reduce(list, [], &[&1 | &2])
 
@@ -53,9 +59,25 @@ defmodule Ex04 do
       iex> Ex04.min [ 5, 2, -7, 9 ]
       -7
 
-  """
+      iex> Ex04.min [ -1, 3, 0, 6, 12 ]
+      -1
 
-  def min([h | t]), do: reduce(t, fn (value, min_val) -> min(value, min_val) end)
+      iex> Ex04.min [ -200, -10, -13 ]
+      -200
+
+      iex> Ex04.min [ 0, 0 ]
+      0
+      
+      iex> Ex04.min [ -125 ]
+      -125
+
+      iex> Ex04.min [ ]
+      nil
+
+  """
+  
+  def min([]), do: nil
+  def min(list), do: reduce(list, fn (value, min_val) -> min(value, min_val) end)
 
   ##############################################################################
   # 4.3: 10 points #
@@ -68,14 +90,43 @@ defmodule Ex04 do
   above. Feel free to write helper functions if you want.
 
       iex> Ex04.even_odd [ 1, 2, 3, 4, 5 ]
-      { [ 2, 4],  [ 1, 3, 5 ] }
+      { [ 2, 4 ],  [ 1, 3, 5 ] }
+
+      iex> Ex04.even_odd [ 2, 8, 0, -24, -1 ]
+      { [ 2, 8, 0, -24 ],  [ -1 ] }
+
+      iex> Ex04.even_odd [ 200, 12, 28, -20, 6 ]
+      { [ 200, 12, 28, -20, 6 ],  [ ] }
+
+      iex> Ex04.even_odd [ 1, 3, 5, 79 ]
+      { [ ],  [ 1, 3, 5, 79 ] }
+
+      iex> Ex04.even_odd [ 77, 2 ]
+      { [ 2 ],  [ 77 ] }
+
+      iex> Ex04.even_odd [ 1 ]
+      { [ ],  [ 1 ] }
+
+      iex> Ex04.even_odd [ ]
+      { [], [] }
 
   Hint: you're taking a list and converting it into something else. What function
   helps you do that. And, if you use that function, what does it return? That
   return value will be the thing you have to manipulate.
   """
+  
+  def even_odd_helper({evens, odds}), do: {reverse(evens), reverse(odds)}
 
-  def even_odd([h | t]), do: {}
+  def even_odd(list) do
+    result = reduce(list, {[], []}, fn (value, {evens, odds}) ->
+        cond do
+            Integer.is_even(value) -> {[value | evens], odds}
+            true -> {evens, [value | odds]}
+        end 
+    end)
+
+    even_odd_helper(result)
+  end
 
 
 

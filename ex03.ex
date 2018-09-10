@@ -54,6 +54,18 @@ defmodule Ex03 do
       iex> Ex03.odd_even [ 1, 2, 4, 7, 9 ]
       [ :odd, :even, :even, :odd, :odd ]
 
+      iex> Ex03.odd_even [ 3, 5, 7 ]
+      [ :odd, :odd, :odd ]
+
+      iex> Ex03.odd_even [ 2, 12 ]
+      [ :even, :even ]
+
+      iex> Ex03.odd_even [ 0 ]
+      [ :even ]
+
+      iex> Ex03.odd_even [ ]
+      [ ]
+
   (The library functions `Integer.is_even` and `Integer.is_odd` may
   be used if needed.)
 
@@ -79,11 +91,17 @@ defmodule Ex03 do
       iex> Ex03.list_contains([ 1, 2, 3, 4], 3)
       true
 
-      iex> Ex03.list_contains([ 1, 2, 3, 4], 3)
+      iex> Ex03.list_contains([ 2.25, 3.2, 1,2 ], 3)
+      false
+
+      iex> Ex03.list_contains([ 1, 3.5, 2.24, 3 ], 3)
       true
 
-      iex> Ex03.list_contains([ 1, 2, 3, 4], 3)
-      true
+      iex> Ex03.list_contains([ ], 4)
+      false
+
+      iex> Ex03.list_contains([ ], nil)
+      false
 
   """
 
@@ -108,12 +126,20 @@ defmodule Ex03 do
   a function that checks for the equality of two lists. You don't
   need to consider nested lists.
 
-      iex> Ex03.list_equal [ 1, 2, 3 ], [1, 2, 3]
+      iex> Ex03.list_equal [ 1, 2, 3 ], [ 1, 2, 3 ]
       true
-      iex> Ex03.list_equal [ 1, 2, 3 ], [1, 2, 3, 4]
+      iex> Ex03.list_equal [ 1, 2, 3 ], [ 1, 2, 3, 4 ]
       false
-      iex> Ex03.list_equal [ 1, 2, 3 ], [3, 2, 1]
+      iex> Ex03.list_equal [ 1, 2, 3 ], [ 3, 2, 1 ]
       false
+      iex> Ex03.list_equal [ 1, 3, 5, 7 ], [ ]
+      false
+      iex> Ex03.list_equal [ ], [ 2, 4, 6, 8 ]
+      false
+      iex> Ex03.list_equal [ 1 ], [ 2 ]
+      false
+      iex> Ex03.list_equal [ ], [ ]
+      true
 
   """
 
@@ -168,6 +194,15 @@ defmodule Ex03 do
       :o
 
       iex> Ex03.won { :o, :x, 3,   :x, :o, 6,   :x, :o, 9 }
+      false
+
+      iex> Ex03.won { :x, :o, :x,   :x, :x, :o,   :o, :o, :x }
+      :x
+
+      iex> Ex03.won { :o, :x, :x,   :x, :x, :o,   :o, :o, :o }
+      :o
+
+      iex> Ex03.won { 1, 2, 3,   4, 5, 6,   7, 8, 9 }
       false
 
   Think a little about a nice way to lay this code out.
