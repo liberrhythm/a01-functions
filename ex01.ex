@@ -40,6 +40,9 @@ defmodule Ex01 do
 
   assert sum2a.(1, 2)    == 3
   assert sum2a.(-1, 100) == 99
+  assert sum2a.(-1.25, 1) == -0.25
+  assert sum2a.(-1, 1) == 0
+  assert sum2a.(0, 0) == 0
 
   ##################
   # 1.2:  5 points #
@@ -51,6 +54,9 @@ defmodule Ex01 do
 
   assert sum2b.(1, 2)    == 3
   assert sum2b.(-1, 100) == 99
+  assert sum2b.(-1.25, 1) == -0.25
+  assert sum2b.(-1, 1) == 0
+  assert sum2b.(0, 0) == 0
 
   ##################
   # 1.3:  5 points #
@@ -64,6 +70,8 @@ defmodule Ex01 do
 
   assert sum3a.(1, 3, 5)  == 9
   assert sum3a.(1, -3, 5) == 3
+  assert sum3a.(-1.25, 1.75, 0.5) == 1
+  assert sum3a.(-1, 0, 1) == 0
 
   ##################
   # 1.4:  5 points #
@@ -75,6 +83,8 @@ defmodule Ex01 do
 
   assert sum3b.(1, 3, 5)  == 9
   assert sum3b.(1, -3, 5) == 3
+  assert sum3b.(-1.25, 1.75, 0.5) == 1
+  assert sum3b.(-1, 0, 1) == 0
 
   ##################
   # 1.5: 10 points #
@@ -92,9 +102,11 @@ defmodule Ex01 do
 
   add_2  = create_adder.(2)
   add_99 = create_adder.(99)
+  add_0 = create_adder.(0)
 
   assert add_2.(3)  == 5
   assert add_99.(3) == 102
+  assert add_0.(-25) == -25
 
 end
 

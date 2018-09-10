@@ -34,6 +34,8 @@ defmodule Ex02 do
 
   assert list2a.(1, 2)    == [ 3, -1 ]
   assert list2a.(-1, 100) == [ 99, -101 ]
+  assert list2a.(0, 0) == [ 0, 0 ]
+  assert list2a.(-22, -3) == [ -25, -19 ]
 
   ##################
   # 2.2:  5 points #
@@ -45,6 +47,8 @@ defmodule Ex02 do
 
   assert list2b.(1, 2)    == [ 3, -1 ]
   assert list2b.(-1, 100) == [ 99, -101 ]
+  assert list2b.(0, 0) == [ 0, 0 ]
+  assert list2b.(-22, -3) == [ -25, -19 ]
 
   ##################
   # 2.3:  5 points #
@@ -58,6 +62,9 @@ defmodule Ex02 do
 
   assert  first2equal.([4, 4, 5, 6, 7])
   assert !first2equal.([4, 5, 6, 7, 8])
+  assert  first2equal.([1.52, 1.52])
+  assert first2equal.([0, -0])
+  assert !first2equal.([1, -60])
 
 end
 

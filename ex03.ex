@@ -202,6 +202,15 @@ defmodule Ex03 do
       iex> Ex03.won { :o, :x, :x,   :x, :x, :o,   :o, :o, :o }
       :o
 
+      iex> Ex03.won { 1, :x, :x,   :x, :x, 6,   :x, 8, 9 }
+      :x
+
+      iex> Ex03.won { :o, :x, :x,   :x, :x, :o,   :o, :o, :x }
+      false
+
+      iex> Ex03.won { 1, :o, 3,   4, 5, 6,   7, :o, 9 }
+      false
+
       iex> Ex03.won { 1, 2, 3,   4, 5, 6,   7, 8, 9 }
       false
 
